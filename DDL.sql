@@ -36,12 +36,12 @@ create table uau_usuario_autorizacao (
 
 create table vnd_venda (
 	vnd_id bigint unsigned not null auto_increment,
-	vnd_produto varchar(50) not null,
-	vnd_quantidade bigint not null,
+	vnd_vendedor varchar(50) not null,
+	vnd_empresa varchar(50) not null,
+	vnd_estado varchar(50) not null,
+	vnd_canal varchar(50) not null,
+	vnd_grupo varchar(50) not null,
+	vnd_valor float not null,
 	vnd_data_hora datetime not null,
-	usr_cliente_id varchar(50) unsigned not null,
-	primary key (vnd_id),
-	foreign key vnd_usr_fk (usr_cliente_id)
-	references usr_usuario (usr_id)
-	on delete restrict on update cascade
+	primary key (vnd_id)
 );
