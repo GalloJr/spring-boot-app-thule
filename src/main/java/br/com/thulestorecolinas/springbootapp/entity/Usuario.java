@@ -2,7 +2,6 @@ package br.com.thulestorecolinas.springbootapp.entity;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "usr_usuario")
 public class Usuario {
@@ -22,7 +21,7 @@ public class Usuario {
 	private String email;
 	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -45,5 +44,4 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 }
