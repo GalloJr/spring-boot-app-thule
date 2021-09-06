@@ -4,7 +4,7 @@ use thule;
 
 create user 'user'@'localhost' identified by 'pass123';
 
-grand select, insert, delete, update on thule.* to user@'localhost';
+grant select, insert, delete, update on thule.* to user@'localhost';
 
 create table usr_usuario (
 	usr_id bigint unsigned not null auto_increment,
