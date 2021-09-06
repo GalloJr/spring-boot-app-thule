@@ -2,7 +2,7 @@ create schema thule;
 
 use thule;
 
-create user 'user'@'localhost' identified by 'pass123';
+create user 'user'@'localhost' identified by 'admin';
 
 grant select, insert, delete, update on thule.* to user@'localhost';
 
