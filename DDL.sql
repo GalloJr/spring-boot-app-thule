@@ -36,12 +36,51 @@ create table uau_usuario_autorizacao (
 
 create table vnd_venda (
 	vnd_id bigint unsigned not null auto_increment,
-	vnd_vendedor varchar(50) not null,
-	vnd_empresa varchar(50) not null,
-	vnd_estado varchar(50) not null,
-	vnd_canal varchar(50) not null,
-	vnd_grupo varchar(50) not null,
+	usr_id bigint unsigned not null,
+	cnpj_id bigint unsigned not null,
+	uf_id bigint unsigned not null,
+	mkt_id bigint unsigned not null,
+	grp_id bigint unsigned not null,
 	vnd_valor float not null,
 	vnd_data_hora datetime not null,
-	primary key (vnd_id)
+	primary key (vnd_id),
+	foreign key vnd_usr_fk (usr_id)
+	references usr_usuario (usr_id)
+	on delete restrict on update cascade,
+	foreign key vnd_cnpj_fk (cnpj_id)
+	references cnpj_empresa (cnpj_id)
+	on delete restrict on update cascade,
+	foreign key vnd_uf_fk (uf_id)
+	references uf_estado (uf_id)
+	on delete restrict on update cascade,
+	foreign key vnd_mkt_fk (mkt_id)
+	references mkt_canal (mkt_id)
+	on delete restrict on update cascade,
+	foreign key vnd_grp_fk (grp_id)
+	references grp_grupo (grp_id)
+	on delete restrict on update cascade
+);
+
+create table grp_grupo (
+	grp_id bigint unsigned not null auto_increment,
+	grp_nome varchar(50) not null,
+	primary key (grp_id)
+);
+
+create table mkt_canal (
+	mkt_id bigint unsigned not null auto_increment,
+	mkt_nome varchar(50) not null,
+	primary key (mkt_id)
+);
+
+create table uf_estado (
+	uf_id bigint unsigned not null auto_increment,
+	uf_nome varchar(50) not null,
+	primary key (uf_id)
+);
+
+create table cnpj_empresa (
+	cnpj_id bigint unsigned not null auto_increment,
+	cnpj_nome varchar(50) not null,
+	primary key (cnpj_id)
 );
