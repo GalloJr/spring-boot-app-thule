@@ -34,6 +34,30 @@ create table uau_usuario_autorizacao (
 	on delete restrict on update cascade
 );
 
+create table grp_grupo (
+	grp_id bigint unsigned not null auto_increment,
+	grp_nome varchar(50) not null,
+	primary key (grp_id)
+);
+
+create table mkt_canal (
+	mkt_id bigint unsigned not null auto_increment,
+	mkt_nome varchar(50) not null,
+	primary key (mkt_id)
+);
+
+create table uf_estado (
+	uf_id bigint unsigned not null auto_increment,
+	uf_nome varchar(50) not null,
+	primary key (uf_id)
+);
+
+create table cnpj_empresa (
+	cnpj_id bigint unsigned not null auto_increment,
+	cnpj_nome varchar(50) not null,
+	primary key (cnpj_id)
+);
+
 create table vnd_venda (
 	vnd_id bigint unsigned not null auto_increment,
 	usr_id bigint unsigned not null,
@@ -61,26 +85,3 @@ create table vnd_venda (
 	on delete restrict on update cascade
 );
 
-create table grp_grupo (
-	grp_id bigint unsigned not null auto_increment,
-	grp_nome varchar(50) not null,
-	primary key (grp_id)
-);
-
-create table mkt_canal (
-	mkt_id bigint unsigned not null auto_increment,
-	mkt_nome varchar(50) not null,
-	primary key (mkt_id)
-);
-
-create table uf_estado (
-	uf_id bigint unsigned not null auto_increment,
-	uf_nome varchar(50) not null,
-	primary key (uf_id)
-);
-
-create table cnpj_empresa (
-	cnpj_id bigint unsigned not null auto_increment,
-	cnpj_nome varchar(50) not null,
-	primary key (cnpj_id)
-);
