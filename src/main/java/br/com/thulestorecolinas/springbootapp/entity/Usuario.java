@@ -19,6 +19,9 @@ public class Usuario {
 	
 	@Column(name = "usr_email")
 	private String email;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Autorizacao> autorizacoes;
 	
 	public Long getId() {
 		return this.id;
@@ -43,5 +46,12 @@ public class Usuario {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<Autorizacao> getAutorizacoes() {
+		return this.autorizacoes;
+	}
+	public void setAutorizacoes(Set<Autorizacao> autorizacoes) {
+		this.autorizacoes = autorizacoes;
 	}
 }
