@@ -85,3 +85,6 @@ create table vnd_venda (
 	on delete restrict on update cascade
 );
 
+insert into usr_usuario (usr_nome, usr_email, usr_senha) values ('Renato', 'renato@thulestore-colinas.com.br', 'admin');
+insert into aut_autorizacao (aut_nome) values ('ROLE_ADMIN');
+insert into uau_usuario_autorizacao (1, 1);
