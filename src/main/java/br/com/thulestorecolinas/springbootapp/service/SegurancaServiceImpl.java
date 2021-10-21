@@ -1,6 +1,8 @@
 package br.com.thulestorecolinas.springbootapp.service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,29 @@ public class SegurancaServiceImpl implements SegurancaService {
         usuario.getAutorizacoes().add(aut);
         usuarioRepo.save(usuario);
         return usuario;
+    }
+
+    @Override
+    public List<Usuario> buscarTodosUsuarios() {
+        return usuarioRepo.findAll();
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorId(Long id) {
+        Optional<Usuario> usuarioOp = usuarioRepo.findById(id);
+        if(usuarioOp.isPresent()) {
+            return usuarioOp.get();
+        }
+        throw new RuntimeException("Usuário não encontrado!");
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorNome(String nome) {
+        Usuario usuario = usuarioRepo.findByNome(nome);
+        if(usuario != null) {
+            return usuario;
+        }
+        throw new RuntimeException("Usuário não encontrado!");
     }
     
 }
