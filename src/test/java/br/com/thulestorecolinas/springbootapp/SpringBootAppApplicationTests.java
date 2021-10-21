@@ -114,7 +114,7 @@ class SpringBootAppApplicationTests {
     }
 
 	@Test
-    void testaBuscaUsuarioNomeSenha() {
+    void testaBuscaUsuarioNomeSenhaQuery() {
         Usuario usuario = usuarioRepo.buscaUsuarioPorNomeESenha("Renato", "admin");
         assertNotNull(usuario);
     }
