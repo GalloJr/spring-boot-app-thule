@@ -1,14 +1,17 @@
 package br.com.thulestorecolinas.springbootapp;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.HashSet;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.thulestorecolinas.springbootapp.entity.Autorizacao;
@@ -19,7 +22,6 @@ import br.com.thulestorecolinas.springbootapp.service.SegurancaService;
 
 @SpringBootTest
 @Transactional
-@Rollback
 class SpringBootAppApplicationTests {
 
 	@Autowired
@@ -30,6 +32,19 @@ class SpringBootAppApplicationTests {
 
 	@Autowired
     private SegurancaService segService;
+
+	@BeforeAll
+	static void init(@Autowired JdbcTemplate jdbcTemplate) {
+		jdbcTemplate.update(
+			"insert into usr_usuario (usr_nome, usr_senha, usr_email) values(?,?,?)",
+				"Renato", "admin", "renato@thulestore-colinas.com.br");
+		jdbcTemplate.update(
+			"insert into aut_autorizacao (aut_nome) values(?)",
+				"ROLE_ADMIN");
+		jdbcTemplate.update(
+			"insert into uau_usuario_autorizacao (usr_id, aut_id) values(?,?)",
+				1L, 1L);
+	}
 
 	@Test
 	void contextLoads() {
