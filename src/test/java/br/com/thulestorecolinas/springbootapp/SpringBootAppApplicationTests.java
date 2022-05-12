@@ -18,7 +18,6 @@ import br.com.thulestorecolinas.springbootapp.entity.Autorizacao;
 import br.com.thulestorecolinas.springbootapp.entity.Usuario;
 import br.com.thulestorecolinas.springbootapp.repository.AutorizacaoRepository;
 import br.com.thulestorecolinas.springbootapp.repository.UsuarioRepository;
-import br.com.thulestorecolinas.springbootapp.service.SegurancaService;
 
 @SpringBootTest
 @Transactional
@@ -29,9 +28,6 @@ class SpringBootAppApplicationTests {
 
 	@Autowired
 	private AutorizacaoRepository autRepo;
-
-	@Autowired
-    private SegurancaService segService;
 
 	@BeforeAll
 	static void init(@Autowired JdbcTemplate jdbcTemplate) {
@@ -138,11 +134,5 @@ class SpringBootAppApplicationTests {
     void testaBuscaUsuarioNomeAutorizacaoQuery() {
         List<Usuario> usuarios = usuarioRepo.buscaPorNomeAutorizacao("ROLE_ADMIN");
         assertFalse(usuarios.isEmpty());
-    }
-
-	@Test
-    void testaServicoCriaUsuario() {
-        Usuario usuario = segService.criarUsuario("normal", "senha123", "email@email.com", "ROLE_USUARIO");
-        assertNotNull(usuario);
     }
 }

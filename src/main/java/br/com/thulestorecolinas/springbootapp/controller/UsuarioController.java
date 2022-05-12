@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thulestorecolinas.springbootapp.entity.Usuario;
-import br.com.thulestorecolinas.springbootapp.service.SegurancaService;
+import br.com.thulestorecolinas.springbootapp.service.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -21,25 +21,28 @@ import br.com.thulestorecolinas.springbootapp.service.SegurancaService;
 public class UsuarioController {
 
     @Autowired
-    private SegurancaService segurancaService;
+    private UsuarioService usuarioService;
     
     @GetMapping
     public List<Usuario> buscarTodos() {
-        return segurancaService.buscarTodosUsuarios();
+        return usuarioService.buscarTodosUsuarios();
     }
 
     @GetMapping(value = "/{id}")
     public Usuario buscarPorId(@PathVariable("id") Long id) {
-        return segurancaService.buscarUsuarioPorId(id);
+        return usuarioService.buscarUsuarioPorId(id);
     }
 
     @GetMapping(value = "/nome")
     public Usuario buscarPorNome(@RequestParam(value="nome") String nome) {
-        return segurancaService.buscarUsuarioPorNome(nome);
+        return usuarioService.buscarUsuarioPorNome(nome);
     }
 
-    @PostMapping
-    public Usuario cadastrarNovoUsuario(@RequestBody Usuario usuario) {
-        return segurancaService.criarUsuario(usuario.getNome(), usuario.getSenha(), usuario.getEmail(), "ROLE_USUARIO");
+    @PostMapping(value = "/novo")
+    public Usuario cadastrarUsuario(@RequestBody UsuarioDTO usuario) {
+        return usuarioService.novoUsuario(usuario.getNome(), 
+                usuario.getEmail(), 
+                usuario.getSenha(),
+                usuario.getAutorizacao());
     }
 }

@@ -1,10 +1,10 @@
 create schema thule;
 
-use thule;
-
 create user 'user'@'localhost' identified by 'admin';
 
 grant select, insert, delete, update on thule.* to user@'localhost';
+
+use thule;
 
 create table usr_usuario (
 	usr_id bigint unsigned not null auto_increment,
@@ -85,6 +85,14 @@ create table vnd_venda (
 	on delete restrict on update cascade
 );
 
-insert into usr_usuario (usr_nome, usr_email, usr_senha) values ('Renato', 'renato@thulestore-colinas.com.br', 'admin');
-insert into aut_autorizacao (aut_nome) values ('ROLE_ADMIN');
-insert into uau_usuario_autorizacao (1, 1);
+insert into usr_usuario (usr_nome, usr_email, usr_senha)
+  values ('admin', 'admin@email.com', '$2a$10$i3.Z8Yv1Fwl0I5SNjdCGkOTRGQjGvHjh/gMZhdc3e7LIovAklqM6C');
+
+insert into aut_autorizacao (aut_nome)
+  value ('ROLE_ADMIN');
+
+insert into uau_usuario_autorizacao (usr_id, aut_id)
+  select usr_id, aut_id
+    from usr_usuario, aut_autorizacao
+    where usr_nome = 'admin'
+    and aut_nome = 'ROLE_ADMIN';
