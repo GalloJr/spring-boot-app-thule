@@ -23,40 +23,40 @@ public class Venda {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "vnd_id")
-	@JsonView(View.ThuleCompleta.class)
+	@JsonView(View.VendaCompleta.class)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cnpj_id")
-	@JsonView(View.ThuleCompleta.class)
+	@JsonView(View.VendaCompleta.class)
 	private String cnpj;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "uf_id")
-	@JsonView(View.ThuleResumo.class)
+	@JsonView(View.VendaResumo.class)
 	private String uf;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mkt_id")
-	@JsonView(View.ThuleCompleta.class)
+	@JsonView(View.VendaCompleta.class)
 	private String mkt;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "grp_id")
-	@JsonView(View.ThuleResumo.class)
+	@JsonView(View.VendaResumo.class)
 	private String grp;
 
 	@Column(name = "vnd_valor", length = 500, nullable = false)
-	@JsonView(View.ThuleResumo.class)
+	@JsonView(View.VendaResumo.class)
 	private float vlr;
 
 	@Column(name = "vnd_data_hora", nullable = false)
-	@JsonView(View.ThuleCompleta.class)
+	@JsonView(View.VendaCompleta.class)
 	private Date dataHora;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usr_id")
-	@JsonView(View.ThuleResumo.class)
+	@JsonView(View.VendaResumo.class)
 	private String usuario;
 
 	public Long getId() {
