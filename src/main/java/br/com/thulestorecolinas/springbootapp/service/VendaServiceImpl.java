@@ -25,7 +25,7 @@ public class VendaServiceImpl implements VendaService {
     @Override
 	@Transactional
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-	public Venda adicionarVenda(String nome, String cnpj, String uf, String mkt, String grp, float vlr, String dataHora) {
+	public Venda adicionarVenda(String nome, String cnpj, String uf, String mkt, String grp, Float vlr, String dataHora) {
 		Usuario usuario = usuarioRepo.findTop1ByNome(nome);
 		if(usuario == null) {
 			throw new UsernameNotFoundException(

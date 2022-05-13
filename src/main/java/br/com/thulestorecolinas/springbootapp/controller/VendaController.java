@@ -32,19 +32,19 @@ public class VendaController {
     @JsonView(View.VendaCompleta.class)
     public Venda cadastrarVenda(@RequestBody VendaDTO venda) {
         return vendaService.adicionarVenda(venda.getUsuario(), 
-            venda.getCNPJ(),
-            venda.getUF(),
-            venda.getMKT(),
-            venda.getGRP(),
+            venda.getCnpj(),
+            venda.getUf(),
+            venda.getMkt(),
+            venda.getGrp(),
             venda.getVlr(),
-            venda.getDataHora());
+            venda.getDthr());
     }
     
     @GetMapping(value = "/busca/{nome}")
     @JsonView(View.VendaCompleta.class)
     public List<Venda> buscarPorNome(
     		@PathVariable("nome") String nome) {
-    	return vendaRepo.findByNome(nome);
+    	return vendaRepo.findByNomeUsuario(nome);
     }
 
     

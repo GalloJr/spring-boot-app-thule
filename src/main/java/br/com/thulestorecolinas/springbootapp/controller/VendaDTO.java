@@ -7,7 +7,7 @@ public class VendaDTO {
     private String uf;
 	private String mkt;
 	private String grp;
-	private String vlr;
+	private Float vlr;
 	private String dthr;
 
 	public String getUsuario() {
@@ -50,11 +50,11 @@ public class VendaDTO {
 		this.grp = grp;
 	}
 
-	public String getVlr() {
+	public Float getVlr() {
 		return vlr;
 	}
 
-	public void setVlr(String vlr) {
+	public void setVlr(Float vlr) {
 		this.vlr = vlr;
 	}
 

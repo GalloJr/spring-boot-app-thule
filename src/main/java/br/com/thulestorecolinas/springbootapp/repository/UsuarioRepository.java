@@ -29,4 +29,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
     public List<Usuario> buscaPorNomeAutorizacao(String autorizacao);
 
     public Usuario findTop1ByNome(String nome);
+
+    public Usuario findTop1ByNomeOrEmail(String username, String username2);
 }
