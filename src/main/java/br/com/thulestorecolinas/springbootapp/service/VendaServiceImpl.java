@@ -8,40 +8,42 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.thulestorecolinas.springbootapp.entity.Thule;
+import br.com.thulestorecolinas.springbootapp.entity.Venda;
 import br.com.thulestorecolinas.springbootapp.entity.Usuario;
-import br.com.thulestorecolinas.springbootapp.repository.ThuleRepository;
+import br.com.thulestorecolinas.springbootapp.repository.VendaRepository;
 import br.com.thulestorecolinas.springbootapp.repository.UsuarioRepository;
 
-@Service("thuleService")
-public class ThuleServiceImpl implements ThuleService {
+@Service("vendaService")
+public class VendaServiceImpl implements VendaService {
 
     @Autowired
     private UsuarioRepository usuarioRepo;
 
     @Autowired
-    private ThuleRepository thuleRepo;
+    private VendaRepository vendaRepo;
 
     @Override
 	@Transactional
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-	public Thule adicionarThule(String titulo, String conteudo, String autor) {
-		Usuario usuario = usuarioRepo.findTop1ByNomeOrEmail(
-				autor, autor);
+	public Venda adicionarVenda(String nome, String cnpj, String uf, String mkt, String grp, float vlr, String dataHora) {
+		Usuario usuario = usuarioRepo.findTop1ByNome(nome);
 		if(usuario == null) {
 			throw new UsernameNotFoundException(
 				"Usuário com identificador " +
-				autor +
+				nome +
 				" não foi encontrado");
 		}
-		Thule thule = new Thule();
-		thule.setTitulo(titulo);
-		thule.setConteudo(conteudo);
-		thule.setAutor(usuario);
-		thule.setDataHora(new Date());
-		thuleRepo.save(thule);
+		Venda venda = new Venda();
+		venda.setUsuario(nome);
+		venda.setCnpj(cnpj);
+		venda.setUf(uf);
+		venda.setMkt(mkt);
+		venda.setGrp(grp);
+		venda.setVlr(vlr);
+		venda.setDataHora(new Date());
+		vendaRepo.save(venda);
 		
-		return thule;
+		return venda;
 	}
     
 }

@@ -11,36 +11,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thulestorecolinas.springbootapp.entity.Thule;
-import br.com.thulestorecolinas.springbootapp.repository.ThuleRepository;
-import br.com.thulestorecolinas.springbootapp.service.ThuleService;
+import br.com.thulestorecolinas.springbootapp.entity.Venda;
+import br.com.thulestorecolinas.springbootapp.repository.VendaRepository;
+import br.com.thulestorecolinas.springbootapp.service.VendaService;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
-@RequestMapping(value = "/thule")
+@RequestMapping(value = "/venda")
 @CrossOrigin
-public class ThuleController {
+public class VendaController {
 
     @Autowired
-    private ThuleService thuleService;
+    private VendaService vendaService;
     
     @Autowired
-    private ThuleRepository thuleRepo;
+    private VendaRepository vendaRepo;
     
     @PostMapping(value = "/nova")
-    @JsonView(View.ThuleCompleta.class)
-    public Thule cadastrarThule(@RequestBody ThuleDTO thule) {
-        return thuleService.adicionarThule(thule.getTitulo(), 
-                thule.getConteudo(),
-                thule.getUsuario());
+    @JsonView(View.VendaCompleta.class)
+    public Venda cadastrarVenda(@RequestBody VendaDTO venda) {
+        return vendaService.adicionarVenda(venda.getUsuario(), 
+            venda.getCNPJ(),
+            venda.getUF(),
+            venda.getMKT(),
+            venda.getGRP(),
+            venda.getVlr(),
+            venda.getDataHora());
     }
     
     @GetMapping(value = "/busca/{nome}")
-    @JsonView(View.ThuleCompleta.class)
-    public List<Thule> buscarPorTitulo(
+    @JsonView(View.VendaCompleta.class)
+    public List<Venda> buscarPorNome(
     		@PathVariable("nome") String nome) {
-    	return thuleRepo.findByNome(nome);
+    	return vendaRepo.findByNome(nome);
     }
 
     
