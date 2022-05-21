@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import br.com.thulestorecolinas.springbootapp.entity.Venda;
+import br.com.thulestorecolinas.springbootapp.entity.Cliente;
 
-public interface VendaRepository extends JpaRepository<Venda, Long>{
+public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 	
 	@PreAuthorize("isAuthenticated()")
-    public List<Venda> findByNomeCliente(String nome);
+    public List<Cliente> findByNome(String nome);
+
+    public Cliente findTop1ByNome(Cliente cliente);
 
 }

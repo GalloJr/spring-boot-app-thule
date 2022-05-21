@@ -1,69 +1,44 @@
 package br.com.thulestorecolinas.springbootapp.controller;
 
+import java.sql.Date;
+
 public class VendaDTO {
     
-    private String usuario;
-    private String cnpj;
-    private String uf;
-	private String mkt;
-	private String grp;
-	private Float vlr;
-	private String dthr;
-
-	public String getUsuario() {
-		return usuario;
+    private Integer cliente;
+    private Integer filial;
+    private Integer produto;
+	private Float valor;
+	private Date data;
+	
+	public Integer getCliente() {
+		return cliente;
 	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setCliente(Integer cliente) {
+		this.cliente = cliente;
 	}
-
-	public String getCnpj() {
-		return cnpj;
+	public Integer getFilial() {
+		return filial;
 	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setFilial(Integer filial) {
+		this.filial = filial;
 	}
-
-	public String getUf() {
-		return uf;
+	public Integer getProduto() {
+		return produto;
 	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
+	public void setProduto(Integer produto) {
+		this.produto = produto;
 	}
-
-	public String getMkt() {
-		return mkt;
+	public Float getValor() {
+		return valor;
 	}
-
-	public void setMkt(String mkt) {
-		this.mkt = mkt;
+	public void setValor(Float valor) {
+		this.valor = valor;
 	}
-
-	public String getGrp() {
-		return grp;
+	public Date getData() {
+		return data;
 	}
-
-	public void setGrp(String grp) {
-		this.grp = grp;
-	}
-
-	public Float getVlr() {
-		return vlr;
-	}
-
-	public void setVlr(Float vlr) {
-		this.vlr = vlr;
-	}
-
-	public String getDthr() {
-		return dthr;
-	}
-
-	public void setDthr(String dthr) {
-		this.dthr = dthr;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	

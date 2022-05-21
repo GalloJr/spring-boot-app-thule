@@ -11,38 +11,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thulestorecolinas.springbootapp.entity.Venda;
-import br.com.thulestorecolinas.springbootapp.repository.VendaRepository;
-import br.com.thulestorecolinas.springbootapp.service.VendaService;
+import br.com.thulestorecolinas.springbootapp.entity.Cliente;
+import br.com.thulestorecolinas.springbootapp.repository.ClienteRepository;
+import br.com.thulestorecolinas.springbootapp.service.ClienteService;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
-@RequestMapping(value = "/venda")
+@RequestMapping(value = "/cliente")
 @CrossOrigin
-public class VendaController {
+public class ClienteController {
 
     @Autowired
-    private VendaService vendaService;
+    private ClienteService clienteService;
     
     @Autowired
-    private VendaRepository vendaRepo;
+    private ClienteRepository clienteRepo;
     
-    @PostMapping(value = "/nova")
-    @JsonView(View.VendaCompleta.class)
-    public Venda cadastrarVenda(@RequestBody VendaDTO venda) {
-        return vendaService.adicionarVenda(venda.getCliente(),
-            venda.getFilial(),
-            venda.getProduto(),
-            venda.getValor(),
-            venda.getData());
+    @PostMapping(value = "/novo")
+    @JsonView(View.ClienteCompleta.class)
+    public Cliente cadastrarCliente(@RequestBody ClienteDTO cliente) {
+        return clienteService.adicionarCliente(cliente.getNome(),
+            cliente.getEmail(),
+            cliente.getEstado());
     }
     
     @GetMapping(value = "/busca/{nome}")
-    @JsonView(View.VendaCompleta.class)
-    public List<Venda> buscarPorNome(
+    @JsonView(View.ClienteCompleta.class)
+    public List<Cliente> buscarPorNome(
     		@PathVariable("nome") String nome) {
-    	return vendaRepo.findByNomeCliente(nome);
+    	return clienteRepo.findByNome(nome);
     }
 
     

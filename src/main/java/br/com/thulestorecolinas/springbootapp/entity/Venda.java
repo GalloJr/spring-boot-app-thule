@@ -27,38 +27,28 @@ public class Venda {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cnpj_id")
+	@JoinColumn(name = "cli_id")
 	@JsonView(View.VendaCompleta.class)
-	private String cnpj;
+	private Integer cliente;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "uf_id")
+	@JoinColumn(name = "fl_id")
 	@JsonView(View.VendaResumo.class)
-	private String uf;
+	private Integer filial;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "mkt_id")
+	@JoinColumn(name = "prd_id")
 	@JsonView(View.VendaCompleta.class)
-	private String mkt;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "grp_id")
-	@JsonView(View.VendaResumo.class)
-	private String grp;
+	private Integer produto;
 
 	@Column(name = "vnd_valor", length = 500, nullable = false)
 	@JsonView(View.VendaResumo.class)
-	private float vlr;
+	private float valor;
 
-	@Column(name = "vnd_data_hora", nullable = false)
+	@Column(name = "vnd_data", nullable = false)
 	@JsonView(View.VendaCompleta.class)
-	private Date dataHora;
+	private Date data;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "usr_id")
-	@JsonView(View.VendaResumo.class)
-	private String usuario;
-
 	public Long getId() {
 		return id;
 	}
@@ -67,60 +57,45 @@ public class Venda {
 		this.id = id;
 	}
 
-	public String getCnpj() {
-		return cnpj;
+	public float getValor() {
+		return valor;
 	}
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setValor(float valor) {
+		this.valor = valor;
 	}
 
-	public String getUf() {
-		return uf;
+	
+	public Date getData() {
+		return data;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
-	public String getMkt() {
-		return mkt;
+	public long getCliente() {
+		return cliente;
 	}
 
-	public void setMkt(String mkt) {
-		this.mkt = mkt;
+	public void setCliente(Integer cliente) {
+		this.cliente = cliente;
 	}
 
-	public String getGrp() {
-		return grp;
+	public Integer getFilial() {
+		return filial;
 	}
 
-	public void setGrp(String grp) {
-		this.grp = grp;
+	public void setFilial(Integer filial) {
+		this.filial = filial;
 	}
 
-	public float getVlr() {
-		return vlr;
+	public Integer getProduto() {
+		return produto;
 	}
 
-	public void setVlr(float vlr) {
-		this.vlr = vlr;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public Date getDataHora() {
-		return dataHora;
-	}
-
-	public void setDataHora(Date dataHora) {
-		this.dataHora = dataHora;
+	public void setProduto(Integer produto) {
+		this.produto = produto;
 	}
 	
 }

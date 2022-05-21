@@ -34,54 +34,45 @@ create table uau_usuario_autorizacao (
 	on delete restrict on update cascade
 );
 
-create table grp_grupo (
-	grp_id bigint unsigned not null auto_increment,
-	grp_nome varchar(50) not null,
-	primary key (grp_id)
+create table cli_cliente (
+	cli_id bigint unsigned not null auto_increment,
+	cli_nome varchar(20) not null,
+	cli_email varchar(100) not null,
+	cli_uf varchar (2) not null,
+	primary key (usr_id),
+	unique key uni_cliente_nome (cli_nome),
+	unique key uni_cliente_email (cli_email)
 );
 
-create table mkt_canal (
-	mkt_id bigint unsigned not null auto_increment,
-	mkt_nome varchar(50) not null,
-	primary key (mkt_id)
+create table prd_produto (
+	prd_id bigint unsigned not null auto_increment,
+	prd_nome varchar(50) not null,
+	prd_cat varchar(50) not null,
+	primary key (prd_id)
 );
 
-create table uf_estado (
-	uf_id bigint unsigned not null auto_increment,
-	uf_nome varchar(50) not null,
-	primary key (uf_id)
-);
-
-create table cnpj_empresa (
-	cnpj_id bigint unsigned not null auto_increment,
-	cnpj_nome varchar(50) not null,
-	primary key (cnpj_id)
+create table fl_filial (
+	fl_id bigint unsigned not null auto_increment,
+	fl_desc varchar(50) not null,
+	primary key (fl_id)
 );
 
 create table vnd_venda (
 	vnd_id bigint unsigned not null auto_increment,
-	usr_id bigint unsigned not null,
-	cnpj_id bigint unsigned not null,
-	uf_id bigint unsigned not null,
-	mkt_id bigint unsigned not null,
-	grp_id bigint unsigned not null,
+	cli_id bigint unsigned not null,
+	fl_id bigint unsigned not null,
+	prd_id bigint unsigned not null,
 	vnd_valor float not null,
-	vnd_data_hora datetime not null,
+	vnd_data datetime not null,
 	primary key (vnd_id),
-	foreign key vnd_usr_fk (usr_id)
-	references usr_usuario (usr_id)
+	foreign key vnd_cli_fk (cli_id)
+	references cli_cliente (cli_id)
 	on delete restrict on update cascade,
-	foreign key vnd_cnpj_fk (cnpj_id)
-	references cnpj_empresa (cnpj_id)
+	foreign key vnd_fl_fk (fl_id)
+	references fl_filial (fl_id)
 	on delete restrict on update cascade,
-	foreign key vnd_uf_fk (uf_id)
-	references uf_estado (uf_id)
-	on delete restrict on update cascade,
-	foreign key vnd_mkt_fk (mkt_id)
-	references mkt_canal (mkt_id)
-	on delete restrict on update cascade,
-	foreign key vnd_grp_fk (grp_id)
-	references grp_grupo (grp_id)
+	foreign key vnd_prd_fk (prd_id)
+	references prd_produto (prd_id)
 	on delete restrict on update cascade
 );
 
@@ -96,3 +87,37 @@ insert into uau_usuario_autorizacao (usr_id, aut_id)
     from usr_usuario, aut_autorizacao
     where usr_nome = 'admin'
     and aut_nome = 'ROLE_ADMIN';
+
+insert into fl_filial (fl_desc)
+  values 
+  		('matriz'),
+  		('filial');
+
+insert into prd_produto (prd_nome, prd_cat)
+	values
+		('mochila', 'pbl'),
+		('carrinho de bebe', 'awk'),
+		('transbike', 's&c'),
+		('mala', 'pbl'),
+		('cadeirinha de bike', 'awk'),
+		('rack', 's&c');
+
+insert into cli_cliente (cli_nome, cli_email, cli_uf)
+	values
+		('renato','renato@email.com','sp'),
+		('jose','jose@email.com','sp'),
+		('joao','joao@email.com','rj'),
+		('juliane','juliane@email.com','rj'),
+		('renan','renan@email.com','mg'),
+		('josi','josi@email.com','mg');
+
+insert into vnd_venda (cli_id, fl_id, prd_id, vnd_valor, vnd_data)
+	values
+		(1,1,1,899.90,19/05/2022),
+		(2,2,2,4899.90,15/05/2022),
+		(3,2,3,5899.90,16/05/2022),
+		(4,1,4,2899.90,18/05/2022),
+		(5,1,5,1899.90,19/05/2022);
+		
+		
+		

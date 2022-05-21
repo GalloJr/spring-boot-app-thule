@@ -6,4 +6,8 @@ public class View {
 	
 	public static class VendaCompleta extends VendaResumo {};
 
+    public static class ClienteResumo {};
+	
+	public static class ClienteCompleta extends ClienteResumo {};
+
 }
