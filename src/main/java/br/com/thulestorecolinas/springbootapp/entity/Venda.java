@@ -32,11 +32,6 @@ public class Venda {
 	private Integer cliente;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "fl_id")
-	@JsonView(View.VendaResumo.class)
-	private Integer filial;
-
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prd_id")
 	@JsonView(View.VendaCompleta.class)
 	private Integer produto;
@@ -74,20 +69,12 @@ public class Venda {
 		this.data = data;
 	}
 
-	public long getCliente() {
+	public Integer getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Integer cliente) {
 		this.cliente = cliente;
-	}
-
-	public Integer getFilial() {
-		return filial;
-	}
-
-	public void setFilial(Integer filial) {
-		this.filial = filial;
 	}
 
 	public Integer getProduto() {

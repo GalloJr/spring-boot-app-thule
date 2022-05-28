@@ -5,7 +5,6 @@ import java.sql.Date;
 public class VendaDTO {
     
     private Integer cliente;
-    private Integer filial;
     private Integer produto;
 	private Float valor;
 	private Date data;
@@ -15,12 +14,6 @@ public class VendaDTO {
 	}
 	public void setCliente(Integer cliente) {
 		this.cliente = cliente;
-	}
-	public Integer getFilial() {
-		return filial;
-	}
-	public void setFilial(Integer filial) {
-		this.filial = filial;
 	}
 	public Integer getProduto() {
 		return produto;

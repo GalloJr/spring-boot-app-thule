@@ -51,25 +51,15 @@ create table prd_produto (
 	primary key (prd_id)
 );
 
-create table fl_filial (
-	fl_id bigint unsigned not null auto_increment,
-	fl_desc varchar(50) not null,
-	primary key (fl_id)
-);
-
 create table vnd_venda (
 	vnd_id bigint unsigned not null auto_increment,
 	cli_id bigint unsigned not null,
-	fl_id bigint unsigned not null,
 	prd_id bigint unsigned not null,
 	vnd_valor float not null,
 	vnd_data datetime not null,
 	primary key (vnd_id),
 	foreign key vnd_cli_fk (cli_id)
 	references cli_cliente (cli_id)
-	on delete restrict on update cascade,
-	foreign key vnd_fl_fk (fl_id)
-	references fl_filial (fl_id)
 	on delete restrict on update cascade,
 	foreign key vnd_prd_fk (prd_id)
 	references prd_produto (prd_id)
@@ -87,11 +77,6 @@ insert into uau_usuario_autorizacao (usr_id, aut_id)
     from usr_usuario, aut_autorizacao
     where usr_nome = 'admin'
     and aut_nome = 'ROLE_ADMIN';
-
-insert into fl_filial (fl_desc)
-  values 
-  		('matriz'),
-  		('filial');
 
 insert into prd_produto (prd_nome, prd_cat)
 	values
@@ -111,13 +96,13 @@ insert into cli_cliente (cli_nome, cli_email, cli_uf)
 		('renan','renan@email.com','mg'),
 		('josi','josi@email.com','mg');
 
-insert into vnd_venda (cli_id, fl_id, prd_id, vnd_valor, vnd_data)
+insert into vnd_venda (cli_id, prd_id, vnd_valor, vnd_data)
 	values
-		(1,1,1,899.90,19/05/2022),
-		(2,2,2,4899.90,15/05/2022),
-		(3,2,3,5899.90,16/05/2022),
-		(4,1,4,2899.90,18/05/2022),
-		(5,1,5,1899.90,19/05/2022);
+		(1,1,899.90,19/05/2022),
+		(2,2,4899.90,15/05/2022),
+		(3,3,5899.90,16/05/2022),
+		(4,4,2899.90,18/05/2022),
+		(5,5,1899.90,19/05/2022);
 		
 		
 		

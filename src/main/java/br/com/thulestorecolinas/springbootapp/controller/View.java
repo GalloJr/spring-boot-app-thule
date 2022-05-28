@@ -10,4 +10,8 @@ public class View {
 	
 	public static class ClienteCompleta extends ClienteResumo {};
 
+    public static class ProdutoResumo {};
+	
+	public static class ProdutoCompleta extends ProdutoResumo {};
+
 }

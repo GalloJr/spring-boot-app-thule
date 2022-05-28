@@ -14,4 +14,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
     public Cliente findTop1ByNome(Cliente cliente);
 
+    public Cliente findById(Cliente cliente);
+
 }
